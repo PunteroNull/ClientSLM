@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Tesis</title>
+
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Material Design -->
+    <link href="css/bootstrap-material-design.css" rel="stylesheet">
+    <link href="css/ripples.min.css" rel="stylesheet">
+
+    <!-- Spinner -->
+    <link href="css/ball-grid-pulse.min.css" rel="stylesheet">
+
+    <!-- Style Propio -->
+    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+
+</head>
+
+<body>
+<div class="tapa" id="PEPE">
+    <div class="mainBodyLoading">
+        <div class="boxLoading panel panel-default">
+            <div class="EXP">
+                <div class="la-ball-grid-pulse la-dark la-2x" style="color: #1565C0">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <h3 class="Calculando">Calculando...</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mainBodyResults">
+    <!-- <img src="logo.png" class="logo"> -->
+    <div class="boxResults panel panel-default">
+        <h1 class="text-center" style="margin-top: 0">Resultados!</h1>
+    </div>
+</div>
+
+<script src="js/jquery-2.2.0.min.js"></script>
+<script src="js/material.min.js"></script>
+<script src="js/ripples.min.js"></script>
+<script>
+$.material.init()
+$(document).click(function() {
+    $("#PEPE").toggleClass("hidden");
+});
+
+</script>
+
+</body>
+
+</html>
