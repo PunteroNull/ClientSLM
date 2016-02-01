@@ -36,6 +36,13 @@ body {
     min-height: 35%;
     margin-bottom: : 40%;
     padding: 2% 2% 2% 2%;
+    position: relative;
+}
+
+.divImage {
+    position: absolute;
+    left: -4em;
+    top: -4em;
 }
 
 .textIntro {

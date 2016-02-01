@@ -27,6 +27,9 @@
 <div class="mainBodyIntro">
     <!-- <img src="logo.png" class="logo"> -->
     <div class="boxIntro panel panel-default">
+        <div class="divImage">
+            <img src="logo.png">
+        </div>
         <div class="textIntro">
             <h1 class="text-center" style="margin-top: 0">Bienvenido!</h1>
             <h3 class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin blandit id sapien non vestibulum. Fusce ex purus, tempus in tortor id, pellentesque placerat dolor. Etiam iaculis erat et dolor lobortis, ac vulputate quam eleifend. Nunc sem orci, eleifend ac tincidunt.</h3>
@@ -44,6 +47,15 @@
 <script src="js/ripples.min.js"></script>
 <script>
 $.material.init()
+$(".twitter-btn").click(function() {
+    alert("Click Twitter");
+    $.get( "localhost:3000/test.html", function( data ) {
+        alert(data);
+    });
+});
+$(".facebook-btn").click(function() {
+  alert("Click Facebook");
+});
 </script>
 
 </body>
