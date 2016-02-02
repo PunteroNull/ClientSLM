@@ -123,6 +123,19 @@ body {
     position: relative;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.results {
+    max-height: 30%;
+}
+
+.hexagons {
+    max-height: 100%;
+}
+
 @media screen and (max-width: 767px) {
     .boxIntro {
         top: 25%;
