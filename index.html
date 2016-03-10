@@ -40,7 +40,7 @@
                     <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3"></div>
                     <div class="form-group label-floating col-xs-6 col-sm-7 col-md-6 col-lg-4">
                         <label class="control-label" for="focusedInput1">Write your Twitter username</label>
-                        <input class="form-control" id="focusedInput1" type="text">
+                        <input class="form-control" id="twitterUserName" type="text">
                     </div>
                     <button class="btn btn-raised btn-primary twitter-btn col-xs-4 col-sm-3 col-md-2 col-lg-2">Twitter</button>
                     <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3"></div>
@@ -66,10 +66,11 @@
 <script>
 $.material.init()
 $(".twitter-btn").click(function() {
-    alert("Click Twitter");
-    $.get( "localhost:3000/test.html", function( data ) {
-        alert(data);
-    });
+    var name = document.getElementById("twitterUserName").value;
+    if(name)
+        $(location).attr('href','loading.html?twitter='+name);
+    else
+        alert("Llena el campo");
 });
 $(".facebook-btn").click(function() {
   alert("Click Facebook");

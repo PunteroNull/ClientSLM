@@ -25,7 +25,8 @@ body {
 .boxIntro {
     width: 100%;
     top: 27.5%;
-    height: 45%;
+    min-height: 45%;
+    height: auto;
     position: relative;
 }
 

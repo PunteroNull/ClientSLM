@@ -92,10 +92,37 @@
 <script src="js/material.min.js"></script>
 <script src="js/ripples.min.js"></script>
 <script>
-$.material.init()
-$(document).click(function() {
-    $("#PEPE").toggleClass("hidden");
-});
+    $.material.init()
+    // $(document).click(function() {
+    //     $("#PEPE").toggleClass("hidden");
+    // });
+
+    var twitterUserName = getParameterByName('twitter');
+    if(!twitterUserName)
+        twitterUserName = "AllGamesBeta";
+
+    console.log("Username: "+twitterUserName);
+
+    function processTwitter(name) {
+        var route = "http://localhost:3000/twitter?name="+name;
+        $.get(route, function() {})
+          .done(function(data) {
+              console.log(data);
+              $("#PEPE").toggleClass("hidden");
+          })
+          .fail(function(err) {
+            console.log("Algo salio mal");
+        });
+    }
+
+    processTwitter(twitterUserName);
+
+    function getParameterByName(name) {
+    	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    		results = regex.exec(location.search);
+    	return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
 
 </script>
 
