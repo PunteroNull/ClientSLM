@@ -1,0 +1,111 @@
+<div class="arriba">
+        <div class="header-left">
+            <a style="text-decoration:none" ui-sref="login" ng-click="limpiar()">
+                <h1 class="div_text_shadow">Social Life Manager</h1>
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="row">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-3"></div>
+                    <div class="form-group label-floating col-xs-5 col-sm-7 col-md-4 col-lg-4">
+                        <label class="control-label text-success" for="focusedInput0">Ingrese su codigo</label>
+                        <input class="form-control celda" id="resultCode" name="resultCode" type="text" ng-model="codigo" required>
+                    </div>
+                    <button type="submit" class="btn btn-raised btn-success btn-primary results-btn col-xs-3 col-sm-3 col-md-2 col-lg-2" ng-click="mostrarResultados()">Resultados</button>
+
+            </div>
+        </div>
+ </div>
+
+ <div class="container" style="height:100%;">
+    <div ng-hide="datosOk">
+
+        <div class="mainBodyIntro">
+            <div class="boxIntro panel panel-default">
+                <div class="divImage">
+                    <img src="/images/logo2.png" style="height:100px;width:120px;">
+                </div>
+                <div class="textIntro">
+                    <h1 class="text-center" style="margin-top: 0">Bienvenido a Social Life Manager!</h1><br>
+                    <h4 class="text-center">Utilizando tu nombre de usuario de Twitter analizaremos que te gusta hablar en esa red social y te recomendaremos contenido relacionado</h3>
+                </div>
+                <div class="inputs container-fluid" style="width:100%;">
+                    <div class="inputTwitter row">
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3"></div>
+                        <div class="form-group label-floating col-xs-6 col-sm-7 col-md-6 col-lg-4">
+                            <label class="control-label" for="focusedInput1">Usuario de Twitter</label>
+                            <input class="form-control" id="twitterUserName" type="text" ng-model="twitter.username">
+                        </div>
+                        <button type="submit" class="btn btn-raised btn-primary twitter-btn col-xs-4 col-sm-3 col-md-2 col-lg-2" ng-click="procesarTwitter()">Enviar</button>
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3"></div>
+                    </div>
+                    <div class="inputEmail row">
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3"></div>
+                        <div class="form-group label-floating col-xs-10 col-sm-10 col-md-8 col-lg-6">
+                            <label class="control-label" for="focusedInput1">Enviar codigo a este mail</label>
+                            <input class="form-control" type="text" ng-model="email">
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-3"></div>
+                    </div><br>
+                    <div class="alert alert-warning"  ng-show="alerta1">
+                        Aún no disponible!
+                    </div>
+                    <div class="alert alert-warning"  ng-show="alerta2">
+                        Falta ingresar datos
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div ng-show="datosOk">
+
+        <div class="mainBodyLoading">
+            <div class="boxLoading panel panel-default container-fluid">
+                <div class="emptySpace row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
+                </div>
+                <div class="loading row" ng-if="resultState == 'process'">
+                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div>
+                    <div class="loadingBar col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <div class="la-ball-grid-pulse la-dark la-2x" style="color: #1565C0">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div>
+                </div>
+                <div class="CalculandoSpace row">
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+                    <div class="Calculando col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                        <h3 ng-if="resultState == 'process'">Procesando...</h3>
+                        <h3 ng-if="resultState == 'sended'">Listo</h3>
+                        <h3 ng-if="resultState == 'cached'">Listo</h3>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+                </div>
+                <div class="mensajeEnvio">
+                    <h4 ng-if="resultState == 'process'">El análisis de los datos puede demorar unos minutos. Te enviaremos un mail para acceder a los resultados de <b>{{twitter.username}}</b> cuando finalice!</h4>
+                    <h4 ng-if="resultState == 'sended'">Te hemos enviado a tu mail un codigo unico que identifica tus resultados, ingresalos en la barra de arriba para ver tus resultados</h4>
+                </div>
+
+                <div class="emptySpace row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+$.material.init()
+</script>

@@ -1,0 +1,121 @@
+<div class="container">
+    <div class="mainBodyResults">
+        <div class="container" style="height:100%;">
+            <div class="boxResults panel panel-default">
+                <div class="container-fluid">
+                    <div class="results row">
+                        <h1 align="center">Resultados del analisis</h1>
+                    </div>
+
+                    <div align="center">
+                        <h3 align="center">Usuario: <b>{{username}}</b></h3>
+                        <h3 align="center">Código: <b>{{codigo}}</b></h3>
+                        <br>
+                        <div class="boxResult panel panel-default">
+                            <div class="textIntro">
+                                <h3 class="text-center">Temas detectados que te interesan</h3>
+                            </div>
+                            <div ng-if="resultados" class="celdaVideo item-special flex-cont" ng-repeat="resultado in resultados | limitTo : 8" ng-class="{'ocultar' : resultado.ocultar}" style="height:200px; width:200px;">
+                                <div style="height:100%; width:100%; background-image: url(./images/cat/{{resultado.catImage}}.jpg);" class="cat-icon">
+                                    <div style="height:100%; width:100%;background-color: #3a5795; opacity: 0.8;" class="flex-cont-vert">
+                                        <h4><span class="text-icon" style="opacity: 1.0;">{{resultado.cat}}</span></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="text-center" ng-if="similar && similar.length">Temas que te recomendamos hablar</h3>
+                            <div ng-if="similar" class="celdaVideo item-special flex-cont" ng-repeat="simi in similar | limitTo : 4" style="height:200px; width:200px;">
+                                <div style="height:100%; width:100%; background-image: url(./images/cat/{{simi.catImage}}.jpg);" class="cat-icon">
+                                    <div style="height:100%; width:100%;background-color: #3a5795; opacity: 0.8;" class="flex-cont-vert">
+                                        <h4><span class="text-icon" style="opacity: 1.0;">{{simi.cat}}</span></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="text-center" ng-if="keywords && keywords.length">Palabras clave detectadas</h3>
+                            <div>
+                                <span ng-repeat="keyword in keywords | limitTo : 30"><span class="label label-info">{{keyword}}</span> </span>
+                            </div>
+                            <h3 class="text-center">Dinos que te parecio el resultado!</h3>
+                            <div ng-show="!voted"><span ng-repeat="rating in ratings">{{rating.current}} de {{rating.max}}
+                                    <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
+                                </span>
+                            </div>
+                            <h4 class="text-center" ng-show="voted">Gracias por su opinion</h4>
+                            <br>
+                        </div>
+                        <br>
+                        <div class="boxResult panel panel-default">
+                            <div class="divImage">
+                                <img src="/images/tube_hex_icon.png" alt="YouTube!" title="YouTube">
+                            </div>
+                            <div class="textIntro">
+                                <h3 class="text-center">Videos que pueden ser de tu interés</h3>
+                            </div>
+                            <div ng-if="videos" ng-repeat="video in videos | limitTo : 12" class="celdaVideo">
+                                <div class="embed-responsive embed-responsive-4by3">
+                                    <iframe class="embed-responsive-item" ng-src="{{getIframeSrc(video)}}" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div>
+                            <br>
+                            <div class="boxResult panel panel-default">
+                                <div class="divImage">
+                                    <img src="/images/twitter_hex_icon.png" alt="Twitter!" title="Twitter">
+                                </div>
+                                <div class="textIntro">
+                                    <h3 class="text-center">Usuarios que comparten tus intereses</h3>
+                                </div>
+
+                                <div class="table-responsive tabla flex-cont">
+                                    <div ng-if="twitterUsers" ng-repeat="twitterUser in twitterUsers | limitTo : 9" class="celdaVideo item" style="heigth:500px; max-heigth:500px;">
+                                        <div>
+                                            <a href="https://twitter.com/{{twitterUser.screen_name}}"><img src={{twitterUser.profile_image_url}} alt="Twitter!" title="Twitter"></a>
+                                            <h4><span><a href="https://twitter.com/{{twitterUser.screen_name}}">{{twitterUser.name}}</a></span></h4>
+                                            <a href="https://twitter.com/intent/follow?screen_name={{twitterUser.screen_name}}" class="twitter-follow-button" data-size="small" data-show-screen-name="false">Follow  @{{twitterUser.screen_name}}</a>
+                                        </div>
+                                        <hr>
+                                        <span>{{twitterUser.description}}<span>
+                                    </div>
+                                </div>
+
+                                <div class="textIntro">
+                                    <h3 class="text-center">Tweets que pueden ser de tu interés</h3>
+                                </div>
+                                <div ng-if="tweets" ng-repeat="tweet in tweets | limitTo : 6" class="celdaVideo">
+                                    <div ng-bind-html="renderHtml(tweet.html)"></div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <br>
+                        <div class="boxResult panel panel-default">
+                            <div class="divImage">
+                                <img src="/images/flckr_hex_icon.png" alt="Flickr!" title="Flickr">
+                            </div>
+                            <div class="textIntro">
+                                <h3 class="text-center">Fotografías que pueden ser de tu interés</h3>
+                            </div>
+                            <div ng-if="flickr" ng-repeat="foto in flickr | limitTo : 15" class="celdaVideo flex-cont">
+                                <div class="celdaVideo item">
+                                    <a href="https://www.flickr.com/photos/{{foto.owner}}/{{foto.id}}" target="_blank">
+                                        <div class="embed-responsive embed-responsive-4by3">
+                                            <img ng-src="https://farm{{foto.farm}}.staticflickr.com/{{foto.server}}/{{foto.id}}_{{foto.secret}}_m.jpg">
+                                        </div>
+                                    </a>
+                                    {{foto.title}}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script>
+    $.material.init()
+</script>
